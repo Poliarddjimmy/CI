@@ -1,0 +1,22 @@
+<%= form_tag('/logged_in') do %>
+<% if flash[:error] %>
+<div id="error_explanation">
+  <%= flash[:error] %></p>
+</div>
+<% end %>
+
+<div class="form-group">
+  <%= label_tag :email %><br />
+  <%= text_field_tag :email,'' ,class: "form-control" %>
+</div>
+
+<div class="form-group mt-2">
+  <%= label_tag :password %><br />
+  <%= password_field_tag :password,'' ,class: "form-control" %>
+</div>
+
+
+<div class="form-group mt-3">
+  <%= submit_tag 'Login', class: "btn btn-secondary w-100" %>
+</div>
+<% end %>
