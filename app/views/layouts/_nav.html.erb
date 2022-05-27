@@ -16,7 +16,18 @@
                 <li class="nav-item">
                     <%= link_to 'Contacts', contacts_path, class: "nav-link" %>
                 </li>
-
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                        aria-haspopup="true" aria-expanded="false">Files</a>
+                    <div class="dropdown-menu">
+                        <%= link_to 'All files', contact_files_path, class: "dropdown-item" %>
+                        <%= link_to 'On Hold', contact_files_path(:status => 'On Hold'), class: "dropdown-item" %>
+                        <%= link_to 'Terminated', contact_files_path(:status => 'Terminated'), class: "dropdown-item" %>
+                        <%= link_to 'Processing', contact_files_path(:status => 'Processing'), class: "dropdown-item" %>
+                        <div class="dropdown-divider"></div>
+                        <%= link_to 'Failed', contact_files_path(:status => 'Failed'), class: "dropdown-item" %>
+                    </div>
+                </li>
             </ul>
 
             <% if current_user %>

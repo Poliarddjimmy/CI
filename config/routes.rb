@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  resources :contact_files, only: %i[index new create destroy]
   resources :contacts, only: %i[index show]
   get :logged_out, to: 'session#destroy'
   post :logged_in, to: 'session#create'
