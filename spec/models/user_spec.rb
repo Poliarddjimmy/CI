@@ -41,6 +41,7 @@ RSpec.describe User, type: :model do
   describe 'Associations' do
     it 'has many contact_files' do
       expect(@user).to respond_to(:contacts)
+      expect(@user).to respond_to(:contact_files)
     end
   end
 end

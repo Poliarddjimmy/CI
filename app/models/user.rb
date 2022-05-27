@@ -2,6 +2,7 @@
 
 # User model
 class User < ApplicationRecord
+  has_many :contact_files
   has_many :contacts
   has_secure_password
 
