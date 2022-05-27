@@ -2,7 +2,7 @@
 
 # User model
 class User < ApplicationRecord
-
+  has_many :contacts
   has_secure_password
 
   validates :name, presence: true
