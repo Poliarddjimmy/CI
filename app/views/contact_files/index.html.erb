@@ -1,0 +1,47 @@
+<div class="container">
+  <p id="notice"><%= notice %></p>
+  <h1 class="d-flex justify-content-between">
+    Contact Files
+    <small>
+      <%= link_to 'New Contact File', new_contact_file_path, class: 'btn btn-mini btn-dark'%>
+    </small>
+  </h1>
+
+  <div class="table-responsive">
+    <table class="table table-striped w-100">
+      <thead>
+        <tr>
+          <th scope="col">File name</th>
+          <th scope="col">Size</th>
+          <th scope="col">Status</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @contact_files.each do |contact_file| %>
+        <tr>
+          <td><%= contact_file.file_url_file_name %></td>
+          <td><%= contact_file.file_url_file_size %></td>
+          <td>
+            <%= contact_file.status %>
+          </td>
+          <td style="width: 20%">
+            <%= form_for contact_file, url: contact_file_path(contact_file), method: :delete, remote: true do |f| %>
+            <%= f.submit 'Delete', class: 'btn btn-mini btn-danger w-100 ' %>
+            <% end %>
+          </td>
+        </tr>
+        <% end %>
+
+        <% if @contact_files.empty? %>
+        <tr>
+          <td colspan="4">No contact files found <% if params[:status]%> with status <%= params[:status] %> <%end%>.
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <%= paginate @contact_files %>
+  </div>
+
+</div>

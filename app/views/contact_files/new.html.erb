@@ -1,0 +1,10 @@
+<div class="container">
+    <h1 class="d-flex justify-content-between">
+        New Contact File
+        <small>
+            <%= link_to 'All contact files', contact_files_path, class: 'btn btn-dark' %>
+        </small>
+    </h1>
+
+    <%= render 'form', contact_file: @contact_file %>
+</div>
