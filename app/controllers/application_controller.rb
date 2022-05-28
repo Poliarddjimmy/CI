@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
   end
 
   def rooted
-    redirect_to root_path unless loging?
+    redirect_to login_path unless loging?
   end
 
   def session?
