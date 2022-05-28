@@ -22,9 +22,9 @@
                                     <p class="mb-0"><%= contact.email %></p>
                                 </div>
                             </div>
-                            <div>
-                                <%= link_to 'Show', contact, class: "btn btn-primary" %>
-                                <%= link_to 'Delete', contact, method: :delete, remote: true, class: "btn btn-danger" %>
+                            <div class="d-flex flex-column">
+                                <span><%= contact.last_4 %></span>
+                                <span><%= contact.franchise %></span>
                             </div>
                         </div>
                     </li>
@@ -52,9 +52,6 @@
                                         <h5 class="mb-1"><%= file.file_url_file_name %></h5>
                                         <p class="mb-0"><%= file.created_at %></p>
                                     </div>
-                                </div>
-                                <div>
-                                    <%= link_to 'Delete', file, method: :delete, remote: true, class: "btn btn-danger" %>
                                 </div>
                             </div>
                         </li>
