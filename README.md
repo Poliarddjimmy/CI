@@ -92,6 +92,9 @@ After installing all the requirements above, here are the steps to run this appl
 ### login
 
 login by using: `email: test@test.test` and `password: password`
-test file to updload: `spec/fixtures/csv/contact.csv`
+
+### test file
+
+file to updload: `spec/fixtures/csv/contact.csv`
 
 # GOOD LUCK
