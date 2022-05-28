@@ -2,6 +2,9 @@
   <p id="notice"><%= notice %></p>
   <h1 class="d-flex justify-content-between">
     Contacts
+    <small>
+      <%= link_to 'Log failed contacts', failed_contacts_path, class: 'btn btn-default' %>
+    </small>
   </h1>
 
   <table class="table table-striped">
