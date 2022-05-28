@@ -1,9 +1,16 @@
 class ContactsController < ApplicationController
-  before_action :set_contact, only: %i[ show edit update destroy ]
+  before_action :set_contact, only: %i[show edit update destroy]
+  before_action :rooted
 
   # GET /contacts or /contacts.json
   def index
-    @contacts = Contact.page(params[:page]).per(5)
+    @contacts = current_user.contacts.where(failed_reason: nil).page(params[:page]).per(5)
+  end
+
+  # GET /contacts/failed
+  def failed
+    @contacts = current_user.contacts.where.not(failed_reason: nil).page(params[:page]).per(5)
+    # render :index
   end
 
   # GET /contacts/1 or /contacts/1.json
@@ -50,9 +57,9 @@ class ContactsController < ApplicationController
   # DELETE /contacts/1 or /contacts/1.json
   def destroy
     @contact.destroy
-
+    flash[:notice] = 'Contact was successfully destroyed.'
     respond_to do |format|
-      format.html { redirect_to contacts_url, notice: "Contact was successfully destroyed." }
+      format.html { redirect_back(fallback_location: root_path) }
       format.json { head :no_content }
     end
   end
