@@ -4,7 +4,7 @@ class ContactFilesController < ApplicationController
 
   # GET /contact_files or /contact_files.json
   def index
-    @contact_files = params[:status] ? ContactFile.where(status: params[:status]).page(params[:page]).per(5) : ContactFile.all.page(params[:page]).per(5)
+    @contact_files = params[:status] ? current_user.contact_files.where(status: params[:status]).page(params[:page]).per(5) : current_user.contact_files.page(params[:page]).per(5)
   end
 
   # GET /contact_files/new
@@ -18,6 +18,7 @@ class ContactFilesController < ApplicationController
 
     respond_to do |format|
       if @contact_file.save
+        CreateContactJob.perform(@contact_file, params[:contact_file][:file_url])
         format.html { redirect_to contact_files_url, notice: 'Contact file was successfully created.' }
         format.json { render :show, status: :created, location: @contact_file }
       else

@@ -1,43 +1,53 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
 
-<p>
-  <strong>Name:</strong>
-  <%= @contact.name %>
-</p>
+  <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Dob:</strong>
-  <%= @contact.dob %>
-</p>
+  <p>
+    <strong>Name:</strong>
+    <%= @contact.name %>
+  </p>
 
-<p>
-  <strong>Phone:</strong>
-  <%= @contact.phone %>
-</p>
+  <p>
+    <strong>Dob:</strong>
+    <%= @contact.dob %>
+  </p>
 
-<p>
-  <strong>Address:</strong>
-  <%= @contact.address %>
-</p>
+  <p>
+    <strong>Phone:</strong>
+    <%= @contact.phone %>
+  </p>
 
-<p>
-  <strong>Credit card:</strong>
-  <%= @contact.credit_card %>
-</p>
+  <p>
+    <strong>Address:</strong>
+    <%= @contact.address %>
+  </p>
 
-<p>
-  <strong>Franchise:</strong>
-  <%= @contact.franchise %>
-</p>
+  <p>
+    <strong>Credit card:</strong>
+    xxxx xxxx xxxx</span> <%= @contact.last_4 %>
+  </p>
 
-<p>
-  <strong>Email:</strong>
-  <%= @contact.email %>
-</p>
+  <p>
+    <strong>Franchise:</strong>
+    <%= @contact.franchise %>
+  </p>
 
-<p>
-  <strong>User:</strong>
-  <%= @contact.user_id %>
-</p>
+  <p>
+    <strong>Email:</strong>
+    <%= @contact.email %>
+  </p>
 
-<%= link_to 'Back', contacts_path %>
+  <p>
+    <strong>User:</strong>
+    <%= @contact.user.name %>
+  </p>
+
+  <p>
+    <%if @contact.failed_reason %>
+    <strong>Failed reason:</strong>
+    <%= @contact.failed_reason %>
+    <%end%>
+  </p>
+
+  <%= link_to 'Back', contacts_path %>
+</div>

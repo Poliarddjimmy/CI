@@ -1,6 +1,70 @@
-<div class="container">
+<div class="container  mt-5">
     <div class="row">
-        <h1 class="">Home Page</h1>
+        <div class="col-md-8">
+            <div class="card">
+                <h3 class="card-header d-flex justify-content-between">
+                    Contact Imported
+                    <small>
+                        <%= link_to 'Add New Contact', new_contact_file_path, class: 'btn btn-darc' %>
+                    </small>
+                </h3>
+                <div class="card-body">
+                    <h5 class="card-title">List of contact imported</h5>
+                    <h6 class="card-subtitle text-muted"><%= pluralize(@contacts.count, 'contact') %> found</h6>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <% @contacts.each do |contact| %>
+                    <li class="list-group-item">
+                        <div class="d-flex justify-content-between">
+                            <div class="d-flex">
+                                <div>
+                                    <h5 class="mb-1"><%= contact.name %></h5>
+                                    <p class="mb-0"><%= contact.email %></p>
+                                </div>
+                            </div>
+                            <div>
+                                <%= link_to 'Show', contact, class: "btn btn-primary" %>
+                                <%= link_to 'Delete', contact, method: :delete, remote: true, class: "btn btn-danger" %>
+                            </div>
+                        </div>
+                    </li>
+                    <% end %>
+                </ul>
+                <div class="card-body">
+                    <%= paginate @contacts %>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <h3 class="card-header">File Imported recently</h3>
 
+                <div class="card-body">
+                    <h5 class="card-title">List of file imported</h5>
+                    <h6 class="card-subtitle text-muted"><%= pluralize(@contact_files.count, 'file') %> found</h6>
+
+                    <ul class="list-group list-group-flush">
+                        <% @contact_files.each do |file| %>
+                        <li class="list-group-item">
+                            <div class="d-flex justify-content-between">
+                                <div class="d-flex">
+                                    <div>
+                                        <h5 class="mb-1"><%= file.file_url_file_name %></h5>
+                                        <p class="mb-0"><%= file.created_at %></p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <%= link_to 'Delete', file, method: :delete, remote: true, class: "btn btn-danger" %>
+                                </div>
+                            </div>
+                        </li>
+                        <% end %>
+                    </ul>
+                    <div class="card-body">
+                        <%= paginate @contact_files %>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

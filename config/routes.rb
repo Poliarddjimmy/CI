@@ -2,7 +2,8 @@
 
 Rails.application.routes.draw do
   resources :contact_files, only: %i[index new create destroy]
-  resources :contacts, only: %i[index show]
+  resources :contacts, only: %i[index show destroy]
+  get 'failed-contacts', to: 'contacts#failed'
   get :logged_out, to: 'session#destroy'
   post :logged_in, to: 'session#create'
   get :login, to: 'session#new'
