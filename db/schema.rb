@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_27_161832) do
+ActiveRecord::Schema.define(version: 2022_05_27_225310) do
 
   create_table "contact_files", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 2022_05_27_161832) do
     t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "failed_reason"
     t.index ["user_id"], name: "index_contacts_on_user_id"
   end
 
