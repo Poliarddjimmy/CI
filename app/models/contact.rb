@@ -21,17 +21,13 @@ class Contact < ApplicationRecord
   after_validation :set_franchise, :encrypt_credit_card
 
   validate do |contact|
-    contact.errors.add(:base, 'The Name is invalid') if NAME_REGEX.match(contact.name).nil?
-    contact.errors.add(:base, 'Invalide email') if EMAIL_REGEX.match(contact.email).nil?
-    contact.errors.add(:base, 'Email must be unique') if Contact.where(email: contact.email).exists?
-    contact.errors.add(:base, 'The credit card is invalid') if CC_REGEX.match(contact.credit_card).nil?
-    contact.errors.add(:base, 'The phone must be at least 10 characters and connot be greater than 19') if contact.phone && contact.phone.length < 10 && contact.phone.length > 19
-    contact.errors.add(:base, 'The birthdate is invalid') if BIRTHDATE_REGEX.match(contact.dob).nil?
-    contact.errors.add(:base, 'The phone number is invalid') if PHONE_REGEX.match(contact.phone).nil?
-  end
-
-  def show_only_last_4_of_de_credit_card
-    self.decrypt_credit_card
+    contact.errors.add(:base, "The Name: #{contact.name} is invalid") if NAME_REGEX.match(contact.name).nil?
+    contact.errors.add(:base, "Invalide email: #{contact.email}") if EMAIL_REGEX.match(contact.email).nil?
+    contact.errors.add(:base, "Contact Email: #{contact.email} is already taken for this user") if Contact.where(email: contact.email, user_id: contact.user_id).exists?
+    contact.errors.add(:base, "The credit card: #{contact.credit_card} is invalid") if CC_REGEX.match(contact.credit_card).nil?
+    contact.errors.add(:base, "The phone number: #{contact.phone} must be at least 10 characters and connot be greater than 19") if contact.phone && contact.phone.length < 10 && contact.phone.length > 19
+    contact.errors.add(:base, "The birthdate: #{contact.dob} is invalid") if BIRTHDATE_REGEX.match(contact.dob).nil?
+    contact.errors.add(:base, "The phone number #{contact.phone} is invalid") if PHONE_REGEX.match(contact.phone).nil?
   end
 
   def last_4
@@ -43,7 +39,7 @@ class Contact < ApplicationRecord
 
   def set_franchise
     data = ValidCreditCard.validate(self.credit_card)
-    self.errors.add(:base, 'The credit card is invalid') if data.nil?
+    self.errors.add(:base, "The credit card #{self.credit_card} is invalid") if data.nil?
 
     self.franchise = data
   end
